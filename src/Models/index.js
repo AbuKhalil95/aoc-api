@@ -9,13 +9,20 @@ const Buyer = BuyerModel(sequelize, Sequelize);
 const Appointment = AppointmentModel(sequelize, Sequelize);
 const Seller = SellerModel(sequelize, Sequelize);
 
-// connecting Buyer to Appointment one to many
+// Connecting Buyer to Appointment one to many
 Buyer.Appointment = Buyer.hasMany(Appointment);
 Appointment.Buyer = Appointment.belongsTo(Buyer);
 
-// connecting Seller to Appointment one to many
+// Connecting Seller to Appointment one to many
 Seller.Appointment = Seller.hasMany(Appointment);
 Appointment.Seller = Appointment.belongsTo(Seller);
 
 const models = { Buyer, Appointment, Seller };
 export default models;
+
+// Helps define what routes connect to which model
+export const modelRoute = {
+    buyers: Buyer,
+    appointments: Appointment,
+    sellers: Seller,
+}

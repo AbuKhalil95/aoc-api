@@ -2,10 +2,10 @@ import models from "../../../Models";
 import { verifyToken } from "../../../Utils/tokens";
 
 // Standard Authentication check JWT Tokens on specified routes
-export default checkAuthentication = (req, res, next) => {
-  
+const checkAuthentication = (req, res, next) => {
+
   // Ignore auth if registering new user
-  if (req.model === models.User && req.method === "POST") {
+  if ((req.model === models.Buyer || req.model === models.Seller) && req.method === "POST") {
     return next();
   }
 
@@ -22,7 +22,8 @@ export default checkAuthentication = (req, res, next) => {
   }
 
   // Check existense of user in the DB with the ID
-  const user = models.User.findByPk(id);
+  // TODO: refactor buyer and seller to have a foreign key to user
+  const user = models.Buyer.findByPk(id) || models.Seller.findByPk(id);
   if (!user) {
     return res.status(401).send({ error: "Invalid Authorization" });
   }
@@ -31,3 +32,5 @@ export default checkAuthentication = (req, res, next) => {
   req.token = token;
   next();
 };
+
+export default checkAuthentication
