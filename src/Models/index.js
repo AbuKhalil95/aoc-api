@@ -26,3 +26,10 @@ export const modelRoute = {
     appointments: Appointment,
     sellers: Seller,
 }
+
+// Helps define what route means which auth model
+// TODO: remove once user auth refactor is done
+export const authModelRoute = {
+    buyer: Buyer,
+    seller: Seller,
+}
