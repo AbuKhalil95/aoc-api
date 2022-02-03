@@ -5,7 +5,9 @@ import { generateToken } from "../../Utils/tokens";
 export const loginName = async (name, model) => {
 
   const user = await model.findOne({ where: { name } });
+  // attach type to jwt token to avoid confusion
+  user.dataValues.type = model;
   const token = generateToken(user.toJSON());
-  
+
   return { user, token };
 };
