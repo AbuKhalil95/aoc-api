@@ -1,5 +1,9 @@
 # Agents of Clouds Assignment API
 
+Clone and run `npm install`, copy `.env.example` to `.env` and fill in the correct credentials plus a secret for JWT tokens.
+
+Run the api with `npm start`.
+
 ## Problem Domain
 
 Design and develop a solution that will allow the users ( Buyers and Sellers ) to book appointments ahead of time.
