@@ -1,3 +1,5 @@
+import models from "../../Models";
+
 export const getRecords = async ({
 	model,
 	params: { id },
@@ -11,8 +13,8 @@ export const createRecord = async ({ model, body }) => {
 };
 
 export const updateRecord = async ({ model, params: { id }, body }) => {
-	await model.update({ ...body }, { where: { id } });
-	return await req.model.findByPk(id);
+	await model.update(body, { where: { id } });
+	return await getModelById(model, id);
 };
 
 const getModelById = async (model, id) => {
